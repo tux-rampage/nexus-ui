@@ -5,3 +5,6 @@
 
 # Dependencies
 /vendor
+/node_modules
+/js
+/css
