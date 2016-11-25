@@ -22,5 +22,4 @@
 
 namespace Rampage\Nexus;
 
-date_default_timezone_set('UTC'); // FIXME
 require_once __DIR__ . '/../master.php';
