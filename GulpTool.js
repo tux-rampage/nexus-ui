@@ -1,17 +1,35 @@
 /**
- * This module is intended to be used for building the deployment ui
+ * Copyright (c) 2017 Axel Helmert
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @author    Axel Helmert
+ * @copyright Copyright (c) 2017 Axel Helmert
+ * @license   http://www.gnu.org/licenses/gpl-3.0.txt GNU General Public License
  */
+
 import watchify from 'watchify';
-var browserify = require('browserify');
-var gutil = require('gulp-util');
-var uglify = require('gulp-uglify');
-var sourcemaps = require('gulp-sourcemaps');
-var sass = require('gulp-sass');
-var del = require('del');
-var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
-var transform = require('vinyl-transform');
-var lodash = require('lodash');
+import browserify from 'browserify';
+import gutil from 'gulp-util';
+import uglify from 'gulp-uglify';
+import sourcemaps from 'gulp-sourcemaps';
+import sass from 'gulp-sass';
+import del from 'del';
+import source from 'vinyl-source-stream';
+import buffer from 'vinyl-buffer';
+import transform from 'vinyl-transform';
+import lodash from 'lodash';
 
 /**
  * Provides a js bundle definition
@@ -183,7 +201,7 @@ function JSBundle(name, src)
  * @constructor
  * @param {String} directory
  */
-function GulpTools(directory, gulpInstance)
+export default function GulpTool(directory, gulpInstance)
 {
     var _self = this;
     var gulp = gulpInstance || require('gulp');
@@ -198,7 +216,7 @@ function GulpTools(directory, gulpInstance)
      * Add default sass build (with options)
      *
      * @param {Object} options [optional] Options passed to libsass
-     * @return {GulpTools} this
+     * @return {GulpTool} this
      */
     this.sass = function(options)
     {
@@ -228,7 +246,7 @@ function GulpTools(directory, gulpInstance)
      *
      * @param   {JSBundle|Srting}   bundle  The name of the bundle or a JSBundle instance
      * @param   {String}            src     [optional] The source file to build from
-     * @returns {GulpTools} this
+     * @returns {GulpTool} this
      */
     this.js = function(bundle, src)
     {
@@ -330,5 +348,3 @@ function GulpTools(directory, gulpInstance)
         return gulp;
     };
 };
-
-module.exports = GulpTools;
