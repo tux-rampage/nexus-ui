@@ -43,12 +43,13 @@ function JSBundle(name, src)
     var _self = this;
 
     this.name = name;
-    this.src = src || name + '.js';
+    this.src = src || name + '.ts';
     this.target = name + '.js';
     this.exposed = [];
     this.externals = [];
     this.paths = [];
-
+    this.isTypeScript = !!this.src.match(/.ts$/);
+    
     /**
      * Define a dependency as external
      *
@@ -125,9 +126,9 @@ function JSBundle(name, src)
      */
     this.createBrowserifyBundle = function(baseDirectory, debug)
     {
-        // add custom browserify options here
+    	var dir = this.isTypeScript? 'ts' : 'js';
         var options = {
-            entries: baseDirectory + '/src/js/' + this.src,
+            entries: baseDirectory + '/src/' + dir + '/' + this.src,
             paths: lodash.map(this.paths, function(path) {
                 return baseDirectory + '/' + path;
             }),
@@ -141,6 +142,8 @@ function JSBundle(name, src)
             var bundle = browserify(options);
         }
 
+        bundle.plugin('tsify');
+        
         lodash.forEach(this.exposed, function(exposed) {
             bundle.require(exposed.name, {expose: exposed.as});
         });
