@@ -24,6 +24,7 @@
     "@types/angular-material": "^1.1.45",
     "@types/angular-oauth2": "^4.1.0",
     "@types/angular-resource": "^1.5.8",
+    "@types/jwt-decode": "^1.4.28",
     "browserify": "^14.1.0",
     "del": "^2.2.2",
     "gulp": "^3.9.1",

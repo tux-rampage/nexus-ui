@@ -204,7 +204,7 @@ function JSBundle(name, src)
  * @constructor
  * @param {String} directory
  */
-export default function GulpTool(directory, gulpInstance)
+function GulpTool(directory, gulpInstance)
 {
     var _self = this;
     var gulp = gulpInstance || require('gulp');
@@ -351,3 +351,6 @@ export default function GulpTool(directory, gulpInstance)
         return gulp;
     };
 };
+
+export GulpTool;
+export JSBundle;
