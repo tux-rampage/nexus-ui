@@ -3,7 +3,7 @@
  */
 
 import * as ng from 'angular';
-import * as entities from '../Entities';
+import * as entities from '../../Entities';
 
 export const API_SERVICE_NAME : string = 'nexus.deployment.api';
 
@@ -18,7 +18,7 @@ export interface ResultSet<Entity>
 export interface IRepository<Entity>
 {
     findOne(id: string|number): ng.IPromise<Entity>;
-    find(query?: {[key: string]: string}): ng.IPromise<ResultSet<Entity>>;   
+    find(query?: {[key: string]: string}): ng.IPromise<ResultSet<Entity>>;
 }
 
 export interface IUpdatableRepository<Entity> {
@@ -29,7 +29,10 @@ export interface IRemovableRepository<Entity> {
     remove(entity: Entity): ng.IPromise<Entity>;
 }
 
-export interface IFullEntityRepository<Entity>
+export interface IFullEntityRepository<Entity> extends
+    IRepository<Entity>,
+    IUpdatableRepository<Entity>,
+    IRemovableRepository<Entity>
 {
 }
 
